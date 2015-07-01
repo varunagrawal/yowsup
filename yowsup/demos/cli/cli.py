@@ -135,6 +135,7 @@ class Cli(object):
         return self.doExecCmd(lambda :targetFn(*args))
 
     def doExecCmd(self, fn):
+        print("calling: {0}".format(fn))
         return fn()
 
 
@@ -148,6 +149,7 @@ class Cli(object):
         while(True):
 
             cmd = self._queuedCmds.pop(0) if len(self._queuedCmds) else input(self.getPrompt()).strip()
+            print("Your command is: {0}".format(cmd))
             wait = self.execCmd(cmd)
             if wait:
                 self.acceptingInput = False
